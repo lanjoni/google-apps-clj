@@ -11,3 +11,6 @@ pom.xml.asc
 /.idea
 /*.iml
 .DS_Store
+.clj-kondo/
+.cpcache/
+.lsp/
