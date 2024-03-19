@@ -11,6 +11,8 @@ pom.xml.asc
 /.idea
 /*.iml
 .DS_Store
-.clj-kondo/
-.cpcache/
-.lsp/
+/.clj-kondo
+/.cpcache
+/.lsp
+/.calva
+/config/google-creds.edn
