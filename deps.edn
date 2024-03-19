@@ -1,0 +1,24 @@
+{:paths ["src" "resources"],
+ :deps
+ {org.clojure/clojure {:mvn/version "1.11.1"},
+  org.typedclojure/typed.clj.runtime {:mvn/version "1.2.0"},
+  clj-time/clj-time {:mvn/version "0.15.2"},
+  com.google.apis/google-api-services-calendar
+  {:mvn/version "v3-rev202-1.22.0"},
+  com.google.apis/google-api-services-drive
+  {:mvn/version "v2-rev168-1.20.0"},
+  com.google.apis/google-api-services-sheets
+  {:mvn/version "v4-rev12-1.22.0"},
+  com.google.oauth-client/google-oauth-client-jetty
+  {:mvn/version "1.22.0"},
+  com.google.gdata/core
+  {:mvn/version "1.47.1",
+   :exclusions
+   [org.apache.httpcomponents/httpclient
+    org.mortbay.jetty/jetty
+    com.google.code.findbugs/jsr305]}}
+ :aliases {:auth {:main-opts ["-m" "google-apps-clj.run"]}
+           :dev {:extra-deps {org.typedclojure/typed.clj.checker {:mvn/version "1.2.0"}}}
+           :test {:extra-deps {lambdaisland/kaocha {:mvn/version "1.87.1366"}}
+                  :extra-paths ["test"]
+                  :main-opts ["-m" "kaocha.runner"]}}}
