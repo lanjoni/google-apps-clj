@@ -70,6 +70,7 @@
    to receive an authorization map, which the user should store securely"
   [google-ctx scope]
   (let [google-secret (get-google-secret google-ctx)
+        redirect-uri (first (:redirect-uris google-ctx))
         auth-flow-builder (doto (GoogleAuthorizationCodeFlow$Builder. http-transport json-factory
                                                                       google-secret scope)
                             (.setAccessType "offline"))
@@ -77,16 +78,18 @@
                     assert)
         auth-request-url (doto (.newAuthorizationUrl auth-flow)
                            assert
-                           (.setRedirectUri "urn:ietf:wg:oauth:2.0:oob"))
+                           (.setRedirectUri redirect-uri))
         auth-url (.build auth-request-url)
         _ (println "Please visit the following url and input the code "
                    "that appears on the screen: " auth-url)
         auth-code (doto ^String (read-line) assert)
         token-request (doto (.newTokenRequest auth-flow auth-code)
                         assert
-                        (.setRedirectUri "urn:ietf:wg:oauth:2.0:oob"))]
-    (doto (.execute token-request)
-      assert)))
+                        (.setRedirectUri redirect-uri))
+        token-response (doto (.execute token-request)
+                         assert)]
+    (println token-response)
+    token-response))
 
 (t/ann get-token-response [GoogleCtx -> GoogleTokenResponse])
 (defn ^GoogleTokenResponse get-token-response

@@ -1,0 +1,1 @@
+["^ ","~$remove*",["^ ","~:row",17,"~:col",1,"~:fixed-arities",["~#set",[2]],"~:name","^0","~:ns","~$typed.cljc.checker.remove","~:top-ns","^7","~:type","~:fn"],"~:filename","/Users/guto/.m2/repository/org/typedclojure/typed.clj.checker/1.2.0/typed.clj.checker-1.2.0.jar:typed/cljc/checker/remove.clj"]
